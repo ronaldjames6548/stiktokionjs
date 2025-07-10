@@ -13,8 +13,17 @@ const HeroOne = () => {
               </div>
               <h2>
                 <span data-animation="fade-up">Tiktok Downloader</span>
-                <span className="sub-head" data-animation="fade-up"  data-delay={0.2}>Download TikTok Video Without Watermark Tiktok to mp4</span>
+                <span className="sub-title-2" data-animation="fade-up"  data-delay={0.2}>Download TikTok Video Without Watermark Tiktok to mp4</span>
               </h2>
+			  <div className="short-prompt" data-animation="fade-zoom-in">
+                <ul>
+                  <li><p>Quick Try :</p></li>
+                  <li><Link className="hover-bg" href="/portfolio">Video</Link></li>
+                  <li><Link href="/portfolio">Photo</Link></li>
+                  <li><Link href="/portfolio">Story</Link></li>
+                  <li><Link href="/portfolio">Douyin</Link></li>
+                </ul>
+              </div>
               <div className="image-generator-box">
                 <div className="searchbox" data-animation="fade-zoom-in">
                   <div className="searchwrapper">

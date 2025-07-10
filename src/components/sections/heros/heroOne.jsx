@@ -15,6 +15,7 @@ const HeroOne = () => {
                 <span data-animation="fade-up">Tiktok Downloader</span>
                 <span className="sub-title-2" data-animation="fade-up"  data-delay={0.2}>Download TikTok Video Without Watermark Tiktok to mp4</span>
               </h2>
+			  <h3 className="sub-title-2" data-animation="fade-up"  data-delay={0.2}>Download TikTok Video Without Watermark Tiktok to mp4</h3>
 			  <div className="short-prompt" data-animation="fade-zoom-in">
                 <ul>
                   <li><Link className="hover-bg" href="/portfolio">Video</Link></li>

@@ -11,10 +11,7 @@ const HeroOne = () => {
               <div className="sub-title-2" data-animation="fade-zoom-in" data-delay={0.4}>
                 <p>Tiktokio</p>
               </div>
-              <h2>
-                <span data-animation="fade-up">Tiktok Downloader</span>
-                <span className="sub-title-2" data-animation="fade-up"  data-delay={0.2}>Download TikTok Video Without Watermark Tiktok to mp4</span>
-              </h2>
+              <h2 data-animation="fade-up">Tiktok Downloader</h2>
 			  <h3 className="sub-title-2" data-animation="fade-up"  data-delay={0.2}>Download TikTok Video Without Watermark Tiktok to mp4</h3>
 			  <div className="short-prompt" data-animation="fade-zoom-in">
                 <ul>

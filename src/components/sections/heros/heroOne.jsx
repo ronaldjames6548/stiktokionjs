@@ -17,7 +17,6 @@ const HeroOne = () => {
               </h2>
 			  <div className="short-prompt" data-animation="fade-zoom-in">
                 <ul>
-                  <li><p>Quick Try :</p></li>
                   <li><Link className="hover-bg" href="/portfolio">Video</Link></li>
                   <li><Link href="/portfolio">Photo</Link></li>
                   <li><Link href="/portfolio">Story</Link></li>
@@ -42,15 +41,7 @@ const HeroOne = () => {
                   </div>
                 </div>
               </div>
-              <div className="short-prompt" data-animation="fade-zoom-in">
-                <ul>
-                  <li><p>Quick Try :</p></li>
-                  <li><Link className="hover-bg" href="/portfolio">Video</Link></li>
-                  <li><Link href="/portfolio">Photo</Link></li>
-                  <li><Link href="/portfolio">Story</Link></li>
-                  <li><Link href="/portfolio">Douyin</Link></li>
-                </ul>
-              </div>
+              
             </div>
           </div>
         </div>

@@ -1,26 +1,26 @@
 export const featuresData = [
     {
       id: 1,
-      title: "Unique Content",
+      title: "Unique Features",
       icon: "fi fi-tr-memo-circle-check",
-      description: "Our AI text generator will be give you the best solution.",
+      description: "Stiktokio is unique with its downloading features",
     },
     {
       id: 2,
       title: "Quick Result",
       icon: "fi fi-tr-hourglass-start",
-      description: "Our AI text generator will be give you the best solution.",
+      description: "Tiktok downloader will be give you the best solution.",
     },
     {
       id: 3,
       title: "User Friendly",
       icon: "fi fi-tr-puzzle-alt",
-      description: "Our AI text generator will be give you the best solution.",
+      description: "Download Tiktok Videos in User Friendly GUI with ease.",
     },
     {
       id: 4,
       title: "Unlimited Result",
       icon: "fi fi-tr-copy-image",
-      description: "Our AI text generator will be give you the best solution.",
+      description: "Enjoy the Unlimited downloads with Tiktokio - Tiktok Downloader.",
     },
   ];

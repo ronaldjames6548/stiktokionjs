@@ -9,11 +9,11 @@ const HeroOne = () => {
           <div className="col-lg-12">
             <div className="hero-content-2">
               <div className="sub-title-2" data-animation="fade-zoom-in" data-delay={0.4}>
-                <p>Aithm Image Generator</p>
+                <p>Tiktokio</p>
               </div>
               <h2>
-                <span data-animation="fade-up">Create beautiful art with</span>
-                <span className="sub-head" data-animation="fade-up"  data-delay={0.2}>Artificial Intelligence</span>
+                <span data-animation="fade-up">Tiktok Downloader</span>
+                <span className="sub-head" data-animation="fade-up"  data-delay={0.2}>Download TikTok Video Without Watermark Tiktok to mp4</span>
               </h2>
               <div className="image-generator-box">
                 <div className="searchbox" data-animation="fade-zoom-in">
@@ -26,7 +26,7 @@ const HeroOne = () => {
                       </div>
                       <div className="col-lg-3">
                         <form>
-                          <button className="btn" type="submit">Generate</button>
+                          <button className="btn" type="submit">Download</button>
                         </form>
                       </div>
                     </div>
@@ -36,10 +36,10 @@ const HeroOne = () => {
               <div className="short-prompt" data-animation="fade-zoom-in">
                 <ul>
                   <li><p>Quick Try :</p></li>
-                  <li><Link className="hover-bg" href="/portfolio">Creative</Link></li>
-                  <li><Link href="/portfolio">Sport</Link></li>
-                  <li><Link href="/portfolio">Animation</Link></li>
-                  <li><Link href="/portfolio">Fantasy</Link></li>
+                  <li><Link className="hover-bg" href="/portfolio">Video</Link></li>
+                  <li><Link href="/portfolio">Photo</Link></li>
+                  <li><Link href="/portfolio">Story</Link></li>
+                  <li><Link href="/portfolio">Douyin</Link></li>
                 </ul>
               </div>
             </div>

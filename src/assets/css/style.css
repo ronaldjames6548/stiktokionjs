@@ -86,7 +86,7 @@ body {
 }
 
 body.dark-theme {
-  background-color: var(--DarkBg);
+  background-color: var(--whiteColor);
 }
 
 body.dark-theme-2 {

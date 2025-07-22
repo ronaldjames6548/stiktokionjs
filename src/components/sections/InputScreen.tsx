@@ -34,6 +34,7 @@ const InputScreen = () => {
     try {
       const res = await fetch(`/api/tiktok-download?url=${encodeURIComponent(url)}`);
       const json = await res.json();
+	  console.log('API Response:', json); 
       if (json.status === 'error') throw new Error(json.error);
       setData(json ?? null);
       loadAd();
@@ -223,13 +224,10 @@ const InputScreen = () => {
             <div className="result-content">
               <div className="video-section">
                 <div className="video-wrapper">
-                  <video
-                    controls
-                    src={data.result.videoSD || data.result.videoHD || data.result.videoWatermark || data.result.music || ''}
-                    className="video"
-                    referrerPolicy="no-referrer"
-                  />
-                </div>
+                <video controls src={data.result.videoSD || data.result.videoHD || data.result.videoWatermark || data.result.music || ''} className="video" referrerPolicy="no-referrer"/>
+                <video controls src={data()!.result.videoSD || data()!.result.videoHD || data()!.result.videoWatermark || data()!.result.music || ""} class="w-full h-full object-cover" referrerpolicy="no-referrer"></video>
+
+				</div>
               </div>
 
               <div className="info-section">

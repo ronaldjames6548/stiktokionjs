@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import React from 'react'
+import InputScreen from '../components/InputScreen';
 
 const HeroOne = () => {
   return (
@@ -21,24 +22,9 @@ const HeroOne = () => {
                   <li><Link href="/portfolio">Douyin</Link></li>
                 </ul>
               </div>
-              <div className="image-generator-box">
-                <div className="searchbox" data-animation="fade-zoom-in">
-                  <div className="searchwrapper">
-                    <div className="row align-items-center">
-                      <div className="col-md-9">
-                        <form>
-                          <input type="text" className="form-control" placeholder="Write your prompt and get you best ai artwork!" />
-                        </form>
-                      </div>
-                      <div className="col-lg-3">
-                        <form>
-                          <button className="btn" type="submit">Download</button>
-                        </form>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              export default function Home() {
+  return <InputScreen />;
+}
               
             </div>
           </div>

@@ -1,6 +1,5 @@
 // src/components/sections/InputScreen.tsx
 'use client';
-
 import { useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -34,18 +33,10 @@ const InputScreen = () => {
     try {
       const res = await fetch(`/api/tiktok-download?url=${encodeURIComponent(url)}`);
       const json = await res.json();
-      console.log('API Response:', json); // Log for debugging
       if (json.status === 'error') throw new Error(json.error);
       setData(json ?? null);
-      if (!json.result?.videoSD && !json.result?.videoHD && !json.result?.videoWatermark && !json.result?.music) {
-        toast.error('No downloadable video found', {
-          position: 'bottom-center',
-          autoClose: 3000,
-          style: { fontSize: '16px' },
-        });
-      }
       loadAd();
-    } catch (error) {
+    } catch (error: any) {
       toast.error(error.message, {
         position: 'bottom-center',
         autoClose: 3000,
@@ -82,11 +73,10 @@ const InputScreen = () => {
     if (!adContainer) return;
 
     adContainer.innerHTML = '';
-
     if (!document.getElementById('aclib')) {
       const script = document.createElement('script');
       script.id = 'aclib';
-      script.src = 'https://acscdn.com/script/aclib.js';
+      script.src = 'https://acscdn.com/script/aclib.js ';
       script.async = true;
       script.onload = () => {
         if (typeof window.aclib !== 'undefined') {
@@ -111,7 +101,6 @@ const InputScreen = () => {
   const runAdcashBanner = () => {
     const adContainer = document.getElementById('ad-banner');
     if (!adContainer) return;
-
     try {
       adContainer.innerHTML = '<div id="ac-banner"></div>';
       window.aclib.runBanner({
@@ -130,7 +119,6 @@ const InputScreen = () => {
   const showFallbackAd = () => {
     const adContainer = document.getElementById('ad-banner');
     if (!adContainer) return;
-
     adContainer.innerHTML = `
       <div class="ad-fallback">
         <div class="ad-fallback-content">
@@ -147,6 +135,17 @@ const InputScreen = () => {
       if (script) script.remove();
     };
   }, []);
+
+  // Determine valid video source
+  const getVideoSrc = (): string | undefined => {
+    return data?.result.videoHD ||
+           data?.result.videoSD ||
+           data?.result.videoWatermark ||
+           data?.result.music ||
+           undefined;
+  };
+
+  const videoSrc = getVideoSrc();
 
   return (
     <div className="container">
@@ -178,13 +177,7 @@ const InputScreen = () => {
                 className="input-field"
               />
               <button type="button" onClick={handlePaste} className="paste-button">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="icon"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
+                <svg xmlns="http://www.w3.org/2000/svg" className="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -196,13 +189,7 @@ const InputScreen = () => {
               </button>
             </div>
             <button type="submit" className="download-button">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="icon"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
+              <svg xmlns="http://www.w3.org/2000/svg" className="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -229,29 +216,40 @@ const InputScreen = () => {
         <div className="result-container">
           <div className="result-box">
             <div className="result-content">
-              {data.result && (data.result.videoSD || data.result.videoHD || data.result.videoWatermark || data.result.music) && (
+              {/* Only render video if there's a valid source */}
+              {videoSrc ? (
                 <div className="video-section">
                   <div className="video-wrapper">
                     <video
                       controls
-                      src={data.result.videoSD || data.result.videoHD || data.result.videoWatermark || data.result.music}
+                      src={videoSrc}
                       className="video"
                       referrerPolicy="no-referrer"
                     />
                   </div>
                 </div>
+              ) : (
+                <div className="video-section">
+                  <p>No video available</p>
+                </div>
               )}
 
               <div className="info-section">
                 <div className="info-header">
-                  <img
-                    src={data.result.author.avatar || ''}
-                    alt={data.result.author.nickname || ''}
-                    className="avatar"
-                  />
+                  {/* Safely render avatar only if URL exists */}
+                  {data.result.author.avatar ? (
+                    <img
+                      src={data.result.author.avatar}
+                      alt={data.result.author.nickname || 'User'}
+                      className="avatar"
+                    />
+                  ) : (
+                    <div className="avatar placeholder-avatar">?</div>
+                  )}
                   <h2 className="nickname">{data.result.author.nickname}</h2>
                   <div className="badge"></div>
                 </div>
+
                 <div className="description">{data.result.desc}</div>
 
                 <div className="ad-container">
@@ -269,13 +267,7 @@ const InputScreen = () => {
                 <div className="download-buttons">
                   {data.result.videoSD && (
                     <button className="download-button sd">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="icon"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
+                      <svg xmlns="http://www.w3.org/2000/svg" className="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path
                           strokeLinecap="round"
                           strokeLinejoin="round"
@@ -283,20 +275,17 @@ const InputScreen = () => {
                           d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
                         />
                       </svg>
-                      <a href={data.result.videoSD} download className="download-link">
+                      <a
+                        href={`https://dl.tiktokiocdn.workers.dev/api/download?url=${encodeURIComponent(data.result.videoSD)}&type=.mp4&title=${encodeURIComponent(data.result.author.nickname || '')}`}
+                        className="download-link"
+                      >
                         Download SD (No Watermark)
                       </a>
                     </button>
                   )}
                   {data.result.videoHD && (
                     <button className="download-button hd">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="icon"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
+                      <svg xmlns="http://www.w3.org/2000/svg" className="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path
                           strokeLinecap="round"
                           strokeLinejoin="round"
@@ -304,20 +293,17 @@ const InputScreen = () => {
                           d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
                         />
                       </svg>
-                      <a href={data.result.videoHD} download className="download-link">
+                      <a
+                        href={` https://dl.tiktokiocdn.workers.dev/api/download?url=${encodeURIComponent(data.result.videoHD)}&type=.mp4&title=${encodeURIComponent(data.result.author.nickname || '')}`}
+                        className="download-link"
+                      >
                         Download HD (No Watermark)
                       </a>
                     </button>
                   )}
                   {data.result.videoWatermark && (
                     <button className="download-button watermark">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="icon"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
+                      <svg xmlns="http://www.w3.org/2000/svg" className="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path
                           strokeLinecap="round"
                           strokeLinejoin="round"
@@ -325,7 +311,10 @@ const InputScreen = () => {
                           d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
                         />
                       </svg>
-                      <a href={data.result.videoWatermark} download className="download-link">
+                      <a
+                        href={` https://dl.tiktokiocdn.workers.dev/api/download?url=${encodeURIComponent(data.result.videoWatermark)}&type=.mp4&title=${encodeURIComponent(data.result.author.nickname || '')}`}
+                        className="download-link"
+                      >
                         Download (With Watermark)
                       </a>
                     </button>

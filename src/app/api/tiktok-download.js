@@ -1,4 +1,4 @@
-// pages/api/tiktok-download.js
+// src/app/api/tiktok-download.js
 import { Downloader } from '@tobyg74/tiktok-api-dl';
 
 export default async function handler(req, res) {

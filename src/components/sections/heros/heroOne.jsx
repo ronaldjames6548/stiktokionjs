@@ -1,6 +1,6 @@
-import Link from 'next/link'
-import React from 'react'
-import InputScreen from '../components/sections/InputScreen';
+// src/components/sections/heros/heroOne.jsx
+import Link from 'next/link';
+import InputScreen from '../InputScreen';
 
 export default function HeroOne() {
   return (
@@ -13,22 +13,32 @@ export default function HeroOne() {
                 <p>Tiktokio</p>
               </div>
               <h2 data-animation="fade-up">Tiktok Downloader</h2>
-			  <h3 className="sub-title-2" data-animation="fade-up"  data-delay={0.2}>Download TikTok Video Without Watermark Tiktok to mp4</h3>
-			  <div className="short-prompt" data-animation="fade-zoom-in">
+              <h3 className="sub-title-2" data-animation="fade-up" data-delay={0.2}>
+                Download TikTok Video Without Watermark Tiktok to mp4
+              </h3>
+              <div className="short-prompt" data-animation="fade-zoom-in">
                 <ul>
-                  <li><Link className="hover-bg" href="/portfolio">Video</Link></li>
-                  <li><Link href="/portfolio">Photo</Link></li>
-                  <li><Link href="/portfolio">Story</Link></li>
-                  <li><Link href="/portfolio">Douyin</Link></li>
+                  <li>
+                    <Link className="hover-bg" href="/portfolio">
+                      Video
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/portfolio">Photo</Link>
+                  </li>
+                  <li>
+                    <Link href="/portfolio">Story</Link>
+                  </li>
+                  <li>
+                    <Link href="/portfolio">Douyin</Link>
+                  </li>
                 </ul>
               </div>
-             <InputScreen />
-              
+              <InputScreen />
             </div>
           </div>
         </div>
       </div>
     </div>
-
   );
 }

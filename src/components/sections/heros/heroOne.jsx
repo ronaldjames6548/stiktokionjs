@@ -1,8 +1,8 @@
 import Link from 'next/link'
 import React from 'react'
-import InputScreen from '../components/InputScreen';
+import InputScreen from '../components/sections/InputScreen';
 
-const HeroOne = () => {
+export default function HeroOne() {
   return (
     <div className="hero-section-2">
       <div className="container">
@@ -22,9 +22,7 @@ const HeroOne = () => {
                   <li><Link href="/portfolio">Douyin</Link></li>
                 </ul>
               </div>
-              export default function Home() {
-  return <InputScreen />;
-}
+             <InputScreen />
               
             </div>
           </div>
@@ -32,7 +30,5 @@ const HeroOne = () => {
       </div>
     </div>
 
-  )
+  );
 }
-
-export default HeroOne

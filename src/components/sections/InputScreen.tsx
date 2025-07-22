@@ -1,4 +1,6 @@
 // src/components/sections/InputScreen.tsx
+'use client';
+
 import { useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -122,10 +124,10 @@ const InputScreen = () => {
     if (!adContainer) return;
 
     adContainer.innerHTML = `
-      <div class="ad-fallback">
-        <div class="ad-fallback-content">
+      <div className="ad-fallback">
+        <div className="ad-fallback-content">
           <p>Advertisement</p>
-          <p class="ad-fallback-text">Ad failed to load</p>
+          <p className="ad-fallback-text">Ad failed to load</p>
         </div>
       </div>
     `;

@@ -225,7 +225,6 @@ const InputScreen = () => {
               <div className="video-section">
                 <div className="video-wrapper">
                 <video controls src={data.result.videoSD || data.result.videoHD || data.result.videoWatermark || data.result.music || ''} className="video" referrerPolicy="no-referrer"/>
-                <video controls src={data()!.result.videoSD || data()!.result.videoHD || data()!.result.videoWatermark || data()!.result.music || ""} class="w-full h-full object-cover" referrerpolicy="no-referrer"></video>
 
 				</div>
               </div>

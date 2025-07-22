@@ -34,8 +34,16 @@ const InputScreen = () => {
     try {
       const res = await fetch(`/api/tiktok-download?url=${encodeURIComponent(url)}`);
       const json = await res.json();
+      console.log('API Response:', json); // Log for debugging
       if (json.status === 'error') throw new Error(json.error);
       setData(json ?? null);
+      if (!json.result?.videoSD && !json.result?.videoHD && !json.result?.videoWatermark && !json.result?.music) {
+        toast.error('No downloadable video found', {
+          position: 'bottom-center',
+          autoClose: 3000,
+          style: { fontSize: '16px' },
+        });
+      }
       loadAd();
     } catch (error) {
       toast.error(error.message, {
@@ -124,10 +132,10 @@ const InputScreen = () => {
     if (!adContainer) return;
 
     adContainer.innerHTML = `
-      <div className="ad-fallback">
-        <div className="ad-fallback-content">
+      <div class="ad-fallback">
+        <div class="ad-fallback-content">
           <p>Advertisement</p>
-          <p className="ad-fallback-text">Ad failed to load</p>
+          <p class="ad-fallback-text">Ad failed to load</p>
         </div>
       </div>
     `;
@@ -221,12 +229,18 @@ const InputScreen = () => {
         <div className="result-container">
           <div className="result-box">
             <div className="result-content">
-              <div className="video-section">
-                <div className="video-wrapper">
-                <video controls src={data.result.videoSD || data.result.videoHD || data.result.videoWatermark || data.result.music || ''} className="video" referrerPolicy="no-referrer"/>
-
-				</div>
-              </div>
+              {data.result && (data.result.videoSD || data.result.videoHD || data.result.videoWatermark || data.result.music) && (
+                <div className="video-section">
+                  <div className="video-wrapper">
+                    <video
+                      controls
+                      src={data.result.videoSD || data.result.videoHD || data.result.videoWatermark || data.result.music}
+                      className="video"
+                      referrerPolicy="no-referrer"
+                    />
+                  </div>
+                </div>
+              )}
 
               <div className="info-section">
                 <div className="info-header">
@@ -269,10 +283,7 @@ const InputScreen = () => {
                           d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
                         />
                       </svg>
-                      <a
-                        href={`https://dl.tiktokiocdn.workers.dev/api/download?url=${encodeURIComponent(data.result.videoSD)}&type=.mp4&title=${encodeURIComponent(data.result.author.nickname || '')}`}
-                        className="download-link"
-                      >
+                      <a href={data.result.videoSD} download className="download-link">
                         Download SD (No Watermark)
                       </a>
                     </button>
@@ -293,10 +304,7 @@ const InputScreen = () => {
                           d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
                         />
                       </svg>
-                      <a
-                        href={`https://dl.tiktokiocdn.workers.dev/api/download?url=${encodeURIComponent(data.result.videoHD)}&type=.mp4&title=${encodeURIComponent(data.result.author.nickname || '')}`}
-                        className="download-link"
-                      >
+                      <a href={data.result.videoHD} download className="download-link">
                         Download HD (No Watermark)
                       </a>
                     </button>
@@ -317,10 +325,7 @@ const InputScreen = () => {
                           d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
                         />
                       </svg>
-                      <a
-                        href={`https://dl.tiktokiocdn.workers.dev/api/download?url=${encodeURIComponent(data.result.videoWatermark)}&type=.mp4&title=${encodeURIComponent(data.result.author.nickname || '')}`}
-                        className="download-link"
-                      >
+                      <a href={data.result.videoWatermark} download className="download-link">
                         Download (With Watermark)
                       </a>
                     </button>

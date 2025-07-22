@@ -33,8 +33,7 @@ const InputScreen = () => {
     setLoading(true);
     try {
       const res = await fetch(`/api/tiktok-download?url=${encodeURIComponent(url)}`);
-     
-	  console.log('API Response:', json); 
+      const json = await res.json();
       if (json.status === 'error') throw new Error(json.error);
       setData(json ?? null);
       loadAd();

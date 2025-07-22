@@ -18,6 +18,8 @@
     "react-dom": "^18",
     "react-modal-video": "^2.0.2",
     "react-photo-view": "^1.2.7",
+    "solid-js": "^1.9.7",
+    "solid-toast": "^0.5.0",
     "swiper": "^11.2.5"
   },
   "devDependencies": {
